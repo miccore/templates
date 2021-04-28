@@ -1,0 +1,45 @@
+{
+
+  "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/sample",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sample",
+      "UpstreamHttpMethod": [ "POST", "GET" ],
+      "SwaggerKey": "sample"
+    },
+    {
+      "DownstreamPathTemplate": "/sample/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "UpstreamPathTemplate": "/api/sample/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "SwaggerKey": "sample"
+    }
+
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "samples",
+      "Config": [
+        {
+          "Name": "samples Microservice API",
+          "Version": "v1",
+          "Url": "http://localhost:44373/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
