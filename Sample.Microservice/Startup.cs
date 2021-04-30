@@ -43,7 +43,7 @@ namespace Sample.Microservice
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             
-            //services and repository
+            //services et repository
             addServive(services);
             
             SampleServiceCollectionExtensions.AddAutoMapper(services, GetAssemblyNamesToScanForMapperProfiles());
@@ -97,7 +97,7 @@ namespace Sample.Microservice
             services.AddMvc().AddFluentValidation();
         }
 
-        //add mapper profiles
+            //ajouter les profiles de mapper
          private static IEnumerable<Profile> GetAssemblyNamesToScanForMapperProfiles(){
              var serv = new Service();
              var profiles = serv.addProfile();
@@ -138,7 +138,7 @@ namespace Sample.Microservice
             {
                 options.AddPolicy(
                     "AllowSpecificOrigin",
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder.AllowAnyOrigin() // TODO: Replace with FE Service Host as appropriate to constrain clients
                         .AllowAnyHeader()
                         .WithMethods("PUT", "POST", "OPTIONS", "GET", "DELETE"));
             });
