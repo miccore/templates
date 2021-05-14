@@ -7,7 +7,6 @@ namespace User.Microservice.Operations.Role.ViewModels {
        
        
         public string Name { get; set; }
-        public int Created_at {get; set;}
     }
 
 }
