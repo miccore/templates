@@ -1,9 +1,13 @@
-using Sample.Microservice.Repositories.Sample.DtoModels;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+/** Begin Import */
+
+    using Sample.Microservice.Repositories.Sample.DtoModels;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+/* End Import */
 
 namespace Sample.Microservice.Data
 {
