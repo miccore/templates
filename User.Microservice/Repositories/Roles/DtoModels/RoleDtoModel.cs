@@ -11,7 +11,7 @@ namespace User.Microservice.Repositories.Role.DtoModels {
     public class RoleDtoModel : BaseEntity {
        
         [Required]
-        public string Name { get; set; }onds;}}
+        public string Name { get; set; }
     }
 
 }
