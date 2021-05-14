@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "LBT1NPBV1RjGKvfwsjSbCsj2d6PCdfWch0uAoY6wDMn758Eh1obz0Y5juBQRBnb2wW+txueqlNP8FAmDekOD4g==",
+  "success": true,
+  "projectFilePath": "/Users/minititan/Projects/DEV/XAMARIN/XamarinTemplateApp/XamarinTemplateApp.iOS/XamarinTemplateApp.iOS.csproj",
+  "expectedPackageFiles": [
+    "/Users/minititan/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/xamarin.forms/5.0.0.2012/xamarin.forms.5.0.0.2012.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/xamarin.testcloud.agent/0.21.9/xamarin.testcloud.agent.0.21.9.nupkg.sha512"
+  ],
+  "logs": []
+}
