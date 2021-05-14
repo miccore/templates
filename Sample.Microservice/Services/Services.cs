@@ -51,7 +51,7 @@ namespace Sample.Microservice.Services {
                     new SampleProfile(),
                     new SampleResponseProfile(),
                     new CreateSampleRequestProfile(),
-                    new UpdateSampleRequestProfile()
+                    new UpdateSampleRequestProfile(),
 
                 /** End Adding Profiles */
                 
