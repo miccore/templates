@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "v6Vij5BKYtNgYPXsCKl4gMyrsmYPzbAisikcoAsWfKulXs6IlxT5DpTSa93K428WfdkF7oDa5pl8cwzvNac1UQ==",
+  "success": true,
+  "projectFilePath": "/Users/minititan/Projects/DEV/TOOLS/templates/XamarinTemplateApp/XamarinTemplateApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/minititan/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512",
+    "/Users/minititan/.nuget/packages/xamarin.forms/5.0.0.2012/xamarin.forms.5.0.0.2012.nupkg.sha512"
+  ],
+  "logs": []
+}
