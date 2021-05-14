@@ -26,7 +26,6 @@ namespace User.Microservice.Repositories.User {
 
         public async Task<UserDtoModel> Create(UserDtoModel user)
         {
-            user.Created_at = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.Users.AddAsync(user);
             await _context.SaveChanges();
 
