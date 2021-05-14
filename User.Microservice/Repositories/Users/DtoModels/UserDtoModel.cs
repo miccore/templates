@@ -24,7 +24,6 @@ namespace User.Microservice.Repositories.User.DtoModels {
         public string Email { get; set; }
         public string RefreshToken { get; set; }
         public string Address { get; set; }
-        public int Created_at { get; set;}
         public int RoleId { get ; set;}
         public RoleDtoModel Role {get; set;}
         
