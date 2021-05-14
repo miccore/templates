@@ -1,1 +1,0 @@
-dotnet restore ../Sample.Microservice/Sample.Microservice.csproj;dotnet publish ../Sample.Microservice/Sample.Microservice.csproj -c Release;dotnet ../Sample.Microservice/bin/Release/netcoreapp3.1/Sample.Microservice.dll --urls "http://localhost:44373";
