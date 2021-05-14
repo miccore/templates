@@ -12,7 +12,6 @@ namespace User.Microservice.Services.User.DomainModels{
         public string Email { get; set; }
         public string RefreshToken { get; set; }
         public string Address { get; set; }
-        public int Created_at { get; set;}
         public string? Token { get; set;}
         public int RoleId { get; set;}
         public RoleDomainModel Role {get; set;}
