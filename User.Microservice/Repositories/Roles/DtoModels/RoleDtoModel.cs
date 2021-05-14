@@ -11,8 +11,7 @@ namespace User.Microservice.Repositories.Role.DtoModels {
     public class RoleDtoModel : BaseEntity {
        
         [Required]
-        public string Name { get; set; }
-        public int Created_at {get{return (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;}}
+        public string Name { get; set; }onds;}}
     }
 
 }
