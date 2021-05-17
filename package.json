@@ -1,10 +1,10 @@
 {
     "name": "webapi_template",
     "version": "1.0.0",
-    "projects":{
-        "gateway": {
+    "projects":[
+        {
             "name": "Gateway.WebApi",
             "port": "5000"
         }
-    }
+    ]
 }
