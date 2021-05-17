@@ -1,0 +1,14 @@
+{
+    "name": "webapi_template",
+    "version": "1.0.0",
+    "projects":{
+        "gateway": {
+            "name": "Gateway.WebApi",
+            "port": "5000"
+        },
+        "user":  {
+            "name": "User.Microservice",
+            "port": "55473"
+        }
+    }
+}
