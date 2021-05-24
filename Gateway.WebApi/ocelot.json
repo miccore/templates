@@ -8,7 +8,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/role",
@@ -21,7 +21,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/role/{id}",
@@ -34,7 +34,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/user/login",
@@ -60,7 +60,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/user",
@@ -73,7 +73,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/user/{id}",
@@ -86,7 +86,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/user/{id}/update/password",
@@ -99,7 +99,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44373
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/user/{email}/reinitialize/password",
@@ -115,7 +115,7 @@
         {
           "Name": "users Microservice API",
           "Version": "v1",
-          "Url": "http://localhost:44373/swagger/v1/swagger.json"
+          "Url": "http://localhost:55473/swagger/v1/swagger.json"
         }
       ]
     }

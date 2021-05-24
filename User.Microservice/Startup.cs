@@ -115,8 +115,8 @@ namespace User.Microservice
                             ValidateAudience = true,
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
-                            ValidIssuer = "http://localhost:44373/",
-                            ValidAudience = "http://localhost:44373/",
+                            ValidIssuer = "http://localhost:55473/",
+                            ValidAudience = "http://localhost:55473/",
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("322e9998-f1f0-494a-9b9d-aea4e0008888")),
                             ClockSkew = TimeSpan.Zero
                         };
