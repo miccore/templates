@@ -38,7 +38,7 @@ namespace Sample.Microservice
         {
             CorsConfiguration(services);
             services.AddDbContextPool<ApplicationDbContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")
+                options => options.UseMySql("server=host;port=3306;database=database_name;user=mysql_user;password=user_pwd"
             ));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
@@ -130,6 +130,22 @@ namespace Sample.Microservice
             {
                 endpoints.MapControllers();
             });
+            
+
+            UpdateDatabase(app);
+
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app){
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
 
         private static void CorsConfiguration(IServiceCollection services)
