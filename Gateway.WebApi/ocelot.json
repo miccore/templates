@@ -13,7 +13,7 @@
       ],
       "UpstreamPathTemplate": "/api/role",
       "UpstreamHttpMethod": [ "POST", "GET" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/role/{id}",
@@ -26,7 +26,7 @@
       ],
       "UpstreamPathTemplate": "/api/role/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/user/login",
@@ -39,7 +39,7 @@
       ],
       "UpstreamPathTemplate": "/api/user/login",
       "UpstreamHttpMethod": [ "POST" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/user/refresh/token",
@@ -52,7 +52,7 @@
       ],
       "UpstreamPathTemplate": "/api/user/refresh/token",
       "UpstreamHttpMethod": [ "POST" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/user",
@@ -65,7 +65,7 @@
       ],
       "UpstreamPathTemplate": "/api/user",
       "UpstreamHttpMethod": [ "POST", "GET" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/user/{id}",
@@ -78,7 +78,7 @@
       ],
       "UpstreamPathTemplate": "/api/user/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/user/{id}/update/password",
@@ -91,7 +91,7 @@
       ],
       "UpstreamPathTemplate": "/api/user/{id}/update/password",
       "UpstreamHttpMethod": [ "PUT" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     },
     {
       "DownstreamPathTemplate": "/user/{email}/reinitialize/password",
@@ -104,16 +104,16 @@
       ],
       "UpstreamPathTemplate": "/api/user/{email}/reinitialize/password",
       "UpstreamHttpMethod": [ "GET" ],
-      "SwaggerKey": "users"
+      "SwaggerKey": "Users"
     }
 
   ],
   "SwaggerEndPoints": [
     {
-      "Key": "users",
+      "Key": "Users",
       "Config": [
         {
-          "Name": "users Microservice API",
+          "Name": "Users Microservice API",
           "Version": "v1",
           "Url": "http://localhost:55473/swagger/v1/swagger.json"
         }
