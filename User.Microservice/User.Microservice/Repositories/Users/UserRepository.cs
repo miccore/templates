@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using User.Microservice.Repositories.User.DtoModels;
 using User.Microservice.Data;
 using Microsoft.EntityFrameworkCore;
+using BC = BCrypt.Net.BCrypt;
 
 namespace User.Microservice.Repositories.User {
 
@@ -18,14 +19,20 @@ namespace User.Microservice.Repositories.User {
             _context = context;
         }
 
-        public async Task<UserDtoModel> AuthenticateUser(UserDtoModel user)
+       public async Task<UserDtoModel> AuthenticateUser(UserDtoModel user)
         {
-            var userGet = await _context.Users.SingleOrDefaultAsync(x => x.Phone == user.Phone && x.Password == user.Password);
+            var userGet = await _context.Users.SingleOrDefaultAsync(x => x.Phone == user.Phone);
+            if (userGet == null || !BC.Verify(user.Password, userGet.Password))
+            {
+                return null;
+            }
+
             return userGet;
         }
 
         public async Task<UserDtoModel> Create(UserDtoModel user)
         {
+            user.Password = BC.HashPassword(user.Password);
             await _context.Users.AddAsync(user);
             await _context.SaveChanges();
 

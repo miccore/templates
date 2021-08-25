@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>User.Microservice</name>
+    </assembly>
+    <members>
+        <member name="M:User.Microservice.Operations.ApiResponses.ApiException.#ctor(User.Microservice.Operations.ApiResponses.Enumerators.ApiHttpStatusCode,System.Object,System.Collections.Generic.IEnumerable{User.Microservice.Operations.ApiResponses.ApiError})">
+            <summary>
+            Initializes a new instance of the <see cref="T:User.Microservice.Operations.ApiResponses.ApiException"/> class.
+            </summary>
+            <param name="httpStatusCode"></param>
+            <param name="data"></param>
+            <param name="apiErrors"></param>
+        </member>
+        <member name="M:User.Microservice.Operations.ApiResponses.ApiException.#ctor(User.Microservice.Operations.ApiResponses.Enumerators.ApiHttpStatusCode,System.Object,System.Collections.Generic.IEnumerable{User.Microservice.Operations.ApiResponses.ApiError},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:User.Microservice.Operations.ApiResponses.ApiException"/> class.
+            </summary>
+            <param name="httpStatusCode"></param>
+            <param name="data"></param>
+            <param name="apiErrors"></param>
+            <param name="message"></param>
+        </member>
+        <member name="P:User.Microservice.Data.ApplicationDbContext.User#Microservice#Data#IApplicationDbContext#Users">
+            Begin DBContext Adding 
+        </member>
+        <member name="M:User.Microservice.Data.ApplicationDbContext.SaveChanges">
+            End DBContext Adding 
+        </member>
+        <member name="P:User.Microservice.Data.IApplicationDbContext.Users">
+            Begin Interface DBContext Adding 
+        </member>
+        <member name="M:User.Microservice.Data.IApplicationDbContext.SaveChanges">
+            End Interface DBContext Adding 
+        </member>
+    </members>
+</doc>
