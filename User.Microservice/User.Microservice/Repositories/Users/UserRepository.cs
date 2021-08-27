@@ -106,14 +106,15 @@ namespace User.Microservice.Repositories.User {
          public async Task<UserDtoModel> UpdatePasswordAsync(int id, string oldpassword, string newpassword)
         {
             var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            if(dto.Password == oldpassword){
-                dto.Password = newpassword;
-                await _context.SaveChanges();
-
-                return dto;
-            }else{
-                return null;
+             if (dto == null || !BC.Verify(oldpassword, dto.Password))
+            {
+                return new UserDtoModel();
             }
+
+            dto.Password = BC.HashPassword(newpassword);
+            await _context.SaveChanges();
+
+            return dto;
         }
     }
 

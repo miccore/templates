@@ -1,0 +1,123 @@
+{
+
+  "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/role",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/role",
+      "UpstreamHttpMethod": [ "POST", "GET" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/role/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/role/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/user/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/user/login",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/user/refresh/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44374
+        }
+      ],
+      "UpstreamPathTemplate": "/api/user/refresh/token",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/user",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/user",
+      "UpstreamHttpMethod": [ "POST", "GET" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/user/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/user/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/user/{id}/update/password",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/user/{id}/update/password",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "SwaggerKey": "Users"
+    },
+    {
+      "DownstreamPathTemplate": "/user/{email}/reinitialize/password",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55473
+        }
+      ],
+      "UpstreamPathTemplate": "/api/user/{email}/reinitialize/password",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "Users"
+    }
+
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "Users",
+      "Config": [
+        {
+          "Name": "Users Microservice API",
+          "Version": "v1",
+          "Url": "http://localhost:55473/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
