@@ -5,12 +5,12 @@
         {
             "name": "Gateway.WebApi",
             "port": "5000",
-            "dockerUrl": "0.0.0.0"
+            "dockerUrl": "192.168.10.4"
         },
         {
             "name": "User.Microservice",
             "port": "55473",
-            "dockerUrl": "0.0.0.0"
+            "dockerUrl": "192.168.10.5"
         }
     ]
 }
