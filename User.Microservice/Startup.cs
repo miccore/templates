@@ -167,7 +167,7 @@ namespace User.Microservice
                 endpoints.MapControllers();
             });
 
-            UpdateDatabase(app);
+            // UpdateDatabase(app);
 
         }
 
