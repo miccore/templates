@@ -36,10 +36,15 @@ namespace Sample.Microservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var host = Configuration["PMA_HOST"] ?? "localhost";
+            var port = Configuration["PMA_PORT"] ?? "3306";
+            var user  = Configuration["PMA_USER"] ?? "mysql_user";
+            var password = Configuration["PMA_PASSWORD"] ?? "mysql_password_user";
+
             CorsConfiguration(services);
             services.AddDbContextPool<ApplicationDbContext>(
-                options => options.UseMySql("server=host;port=3306;database=database_name;user=mysql_user;password=user_pwd"
-            ));
+                    options => options.UseMySql($"server={host};port={port};database=pkk_db;user={user};password={password}" 
+             ));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             
