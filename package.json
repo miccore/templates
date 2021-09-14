@@ -4,11 +4,13 @@
     "projects":[
         {
             "name": "Gateway.WebApi",
-            "port": "5000"
+            "port": "5000",
+            "dockerUrl": "0.0.0.0"
         },
         {
             "name": "User.Microservice",
-            "port": "55473"
+            "port": "55473",
+            "dockerUrl": "0.0.0.0"
         }
     ]
 }

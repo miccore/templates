@@ -10,6 +10,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using AutoMapper;
+    using Microsoft.AspNetCore.Hosting;
+    using User.Microservice.Data;
 
     using User.Microservice.Repositories.User;
     using User.Microservice.Services.User;
@@ -39,7 +41,8 @@ namespace User.Microservice.Services {
         public void addService(){
 
             /** Begin Injection  */
-            
+                _services.AddTransient<IStartupFilter, DBContextMigration<ApplicationDbContext>>();
+                
                 _services.TryAddScoped<IUserRepository, UserRepository>();
                 _services.TryAddTransient<IUserService, UserService>();
 
