@@ -5,8 +5,8 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.2.0/16
-          gateway: 192.168.2.1
+        - subnet: 192.168.10.0/16
+          gateway: 192.168.10.1
 services:
   db:
     image: mysql:8.0.20
@@ -26,7 +26,7 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       static-network:
-        ipv4_address: 192.168.2.2
+        ipv4_address: 192.168.10.2
   phpmyadmin:
     depends_on:
       - db
@@ -43,7 +43,7 @@ services:
       PMA_ARBITRARY: 1
     networks:
       static-network:
-        ipv4_address: 192.168.2.3
+        ipv4_address: 192.168.10.3
   gateway:
     container_name: gateway
     depends_on:
@@ -65,4 +65,4 @@ services:
       PMA_ARBITRARY: 1
     networks:
       static-network:
-        ipv4_address: 192.168.2.4
+        ipv4_address: 192.168.10.4
