@@ -5,7 +5,7 @@
         {
             "name": "Gateway.WebApi",
             "port": "5000",
-            "dockerUrl": "0.0.0.0"
+            "dockerUrl": "192.168.2.4"
         }
     ]
 }

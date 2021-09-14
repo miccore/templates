@@ -1,0 +1,68 @@
+volumes: 
+    dbdata:
+networks:
+  static-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.2.0/16
+          gateway: 192.168.2.1
+services:
+  db:
+    image: mysql:8.0.20
+    container_name: mysql-container
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports: 
+      - '3306:3306'
+    expose: 
+      - '3306'
+    environment: 
+      MYSQL_ROOT_PASSWORD: 'my_password'
+      MYSQL_DATABASE: 'db-name'
+      MYSQL_USER: 'mysql-user'
+      MYSQL_PASSWORD: 'mysql-password'
+    volumes: 
+      - dbdata:/var/lib/mysql
+    networks:
+      static-network:
+        ipv4_address: 192.168.2.2
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-container
+    restart: always
+    ports: 
+      - '82:80'
+    links: 
+      - db
+    environment: 
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    networks:
+      static-network:
+        ipv4_address: 192.168.2.3
+  gateway:
+    container_name: gateway
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile.Gateway
+    expose: 
+      - '80'
+    ports: 
+      - "5000:80"
+    depends_on:
+        - db
+    environment: 
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: mysql-user
+      PMA_PASSWORD: mysql-password
+      PMA_ARBITRARY: 1
+    networks:
+      static-network:
+        ipv4_address: 192.168.2.4
