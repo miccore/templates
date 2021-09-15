@@ -49,7 +49,7 @@ services:
     depends_on:
       - db
     build:
-      context: .
+      context: ./Gateway.WebApi
       dockerfile: Dockerfile.Gateway
     expose: 
       - '80'
