@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app
+
+COPY ./Sample.Microservice/bin/Release/net5.0/. .
+
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+WORKDIR /app
+COPY --from=build /app/. .
+
+ENTRYPOINT ["dotnet", "Sample.Microservice.dll"]
