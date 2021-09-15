@@ -49,7 +49,7 @@ services:
     depends_on:
       - db
     build:
-      context: .
+      context: ./Gateway.WebApi
       dockerfile: Dockerfile.Gateway
     expose: 
       - '80'
@@ -71,7 +71,7 @@ services:
     depends_on:
       - db
     build: 
-      context: .
+      context: ./User.Microservice
       dockerfile: Dockerfile.User
     expose: 
       - '80'

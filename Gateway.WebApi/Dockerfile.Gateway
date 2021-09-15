@@ -1,8 +1,9 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
-COPY ./Gateway.WebApi/bin/Release/netcoreapp3.1/. ./
+COPY ./bin/Release/net5.0/. .
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
+COPY --from=build /app/. .
 RUN mv ocelot.docker.json ocelot.json
 ENTRYPOINT ["dotnet", "Gateway.WebApi.dll"]
