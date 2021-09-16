@@ -1,7 +1,7 @@
 volumes: 
     dbdata:
 networks:
-  static-network:
+  static_network:
     driver: bridge
     ipam:
       config:
@@ -25,7 +25,7 @@ services:
     volumes: 
       - dbdata:/var/lib/mysql
     networks:
-      static-network:
+      static_network:
         ipv4_address: 192.168.10.2
   phpmyadmin:
     depends_on:
@@ -42,7 +42,7 @@ services:
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     networks:
-      static-network:
+      static_network:
         ipv4_address: 192.168.10.3
   gateway:
     container_name: gateway
@@ -64,7 +64,7 @@ services:
       PMA_PASSWORD: mysql-password
       PMA_ARBITRARY: 1
     networks:
-      static-network:
+      static_network:
         ipv4_address: 192.168.10.4
   user:
     container_name: user
@@ -84,5 +84,5 @@ services:
       PMA_PASSWORD: mysql-password
       PMA_ARBITRARY: 1
     networks:
-      static-network:
+      static_network:
         ipv4_address: 192.168.10.5
