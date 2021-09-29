@@ -56,8 +56,8 @@ services:
     environment: 
       PMA_HOST: db
       PMA_PORT: 3306
-      PMA_USER: pkk_user
-      PMA_PASSWORD: 2DTdsplbFBoXhYZ/
+      PMA_USER: mysql-user
+      PMA_PASSWORD: mysql-password
       PMA_ARBITRARY: 1
     networks:
       static-network:
