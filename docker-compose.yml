@@ -60,7 +60,7 @@ services:
       PMA_PASSWORD: mysql-password
       PMA_ARBITRARY: 1
     networks:
-      static-network:
+      static_network:
         ipv4_address: 192.168.2.200
   gateway:
     container_name: gateway
