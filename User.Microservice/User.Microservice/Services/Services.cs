@@ -41,7 +41,7 @@ namespace User.Microservice.Services {
         public void addService(){
 
             /** Begin Injection  */
-                _services.AddTransient<IStartupFilter, DBContextMigration<ApplicationDbContext>>();
+                // _services.AddTransient<IStartupFilter, DBContextMigration<ApplicationDbContext>>();
                 
                 _services.TryAddScoped<IUserRepository, UserRepository>();
                 _services.TryAddTransient<IUserService, UserService>();

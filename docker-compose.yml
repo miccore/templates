@@ -44,6 +44,24 @@ services:
     networks:
       static_network:
         ipv4_address: 192.168.10.3
+  migration:
+    depends_on:
+      - db
+    container_name: migration
+    links: 
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile.Migration
+    environment: 
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: pkk_user
+      PMA_PASSWORD: 2DTdsplbFBoXhYZ/
+      PMA_ARBITRARY: 1
+    networks:
+      static-network:
+        ipv4_address: 192.168.2.200
   gateway:
     container_name: gateway
     depends_on:
