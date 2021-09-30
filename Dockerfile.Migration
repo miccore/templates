@@ -8,4 +8,5 @@ WORKDIR /app
 COPY --from=build /app/ .
 
 RUN dotnet tool install --global Miccore.Net
-CMD /root/.dotnet/tools/miccore migrate
+RUN dotnet tool install --global dotnet-ef
+CMD /root/.dotnet/tools/miccore migrate -d /root/.dotnet/tools/dotnet-ef
