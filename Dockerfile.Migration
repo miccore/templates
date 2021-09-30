@@ -9,4 +9,6 @@ COPY --from=build /app/ .
 
 RUN dotnet tool install --global Miccore.Net
 RUN dotnet tool install --global dotnet-ef
+RUN /root/.dotnet/tools/miccore build --docker
+
 CMD /root/.dotnet/tools/miccore migrate -d /root/.dotnet/tools/dotnet-ef
