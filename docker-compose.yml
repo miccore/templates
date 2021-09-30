@@ -55,6 +55,7 @@ services:
       dockerfile: Dockerfile.Migration
     environment: 
       PMA_HOST: db
+      PMA_DB: db-name
       PMA_PORT: 3306
       PMA_USER: mysql-user
       PMA_PASSWORD: mysql-password
@@ -77,6 +78,7 @@ services:
         - db
     environment: 
       PMA_HOST: db
+      PMA_DB: db-name
       PMA_PORT: 3306
       PMA_USER: mysql-user
       PMA_PASSWORD: mysql-password
