@@ -138,8 +138,6 @@ namespace Sample.Microservice
             });
             
 
-            UpdateDatabase(app);
-
         }
 
         private static void UpdateDatabase(IApplicationBuilder app){
