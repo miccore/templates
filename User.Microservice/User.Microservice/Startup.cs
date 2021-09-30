@@ -168,8 +168,6 @@ namespace User.Microservice
                 endpoints.MapControllers();
             });
 
-            // UpdateDatabase(app);
-
         }
 
         private static void UpdateDatabase(IApplicationBuilder app){
