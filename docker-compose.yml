@@ -55,12 +55,13 @@ services:
       dockerfile: Dockerfile.Migration
     environment: 
       PMA_HOST: db
+      PMA_DB: db-name
       PMA_PORT: 3306
-      PMA_USER: pkk_user
-      PMA_PASSWORD: 2DTdsplbFBoXhYZ/
+      PMA_USER: mysql-user
+      PMA_PASSWORD: mysql-password
       PMA_ARBITRARY: 1
     networks:
-      static-network:
+      static_network:
         ipv4_address: 192.168.2.200
   gateway:
     container_name: gateway
@@ -77,6 +78,7 @@ services:
         - db
     environment: 
       PMA_HOST: db
+      PMA_DB: db-name
       PMA_PORT: 3306
       PMA_USER: mysql-user
       PMA_PASSWORD: mysql-password
@@ -97,6 +99,7 @@ services:
       - "55473:80"
     environment: 
       PMA_HOST: db
+      PMA_DB: db-name
       PMA_PORT: 3306
       PMA_USER: mysql-user
       PMA_PASSWORD: mysql-password
