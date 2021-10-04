@@ -41,13 +41,14 @@ namespace User.Microservice
         public void ConfigureServices(IServiceCollection services)
         {
             var host = Configuration["PMA_HOST"] ?? "localhost";
+            var db = Configuration["PMA_DB"] ?? "database";
             var port = Configuration["PMA_PORT"] ?? "3306";
             var user  = Configuration["PMA_USER"] ?? "mysql_user";
             var password = Configuration["PMA_PASSWORD"] ?? "mysql_password_user";
 
             CorsConfiguration(services);
             services.AddDbContextPool<ApplicationDbContext>(
-                    options => options.UseMySql($"server={host};port={port};database=pkk_db;user={user};password={password}" 
+                    options => options.UseMySql($"server={host};port={port};database={db};user={user};password={password}" 
              ));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
@@ -167,7 +168,6 @@ namespace User.Microservice
                 endpoints.MapControllers();
             });
 
-            // UpdateDatabase(app);
 
         }
 

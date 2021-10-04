@@ -3,8 +3,4 @@ WORKDIR /app
 
 COPY ./User.Microservice/bin/Release/net5.0/publish/. .
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /app
-COPY --from=build /app/. .
-
 ENTRYPOINT ["dotnet", "User.Microservice.dll"]
