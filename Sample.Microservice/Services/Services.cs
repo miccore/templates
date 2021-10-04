@@ -38,7 +38,7 @@ namespace Sample.Microservice.Services {
         public void addService(){
              /** Begin Injection  */
             
-                _services.AddTransient<IStartupFilter, DBContextMigration<ApplicationDbContext>>();
+                // _services.AddTransient<IStartupFilter, DBContextMigration<ApplicationDbContext>>();
                 
                 _services.TryAddScoped<ISampleRepository, SampleRepository>();
                 _services.TryAddTransient<ISampleService, SampleService>();
