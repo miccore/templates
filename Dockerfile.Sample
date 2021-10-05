@@ -2,5 +2,5 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 
 COPY ./Sample.Microservice/bin/Release/net5.0/publish/. .
-
+ENV ASPNETCORE_URLS http://*:80
 ENTRYPOINT ["dotnet", "Sample.Microservice.dll"]
