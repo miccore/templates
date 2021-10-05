@@ -2,4 +2,5 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 COPY ./bin/Release/net5.0/publish/. .
 RUN mv ocelot.docker.json ocelot.json
+ENV ASPNETCORE_URLS http://*:80
 ENTRYPOINT ["dotnet", "Gateway.WebApi.dll"]
