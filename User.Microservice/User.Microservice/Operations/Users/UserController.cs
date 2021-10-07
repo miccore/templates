@@ -51,7 +51,7 @@ namespace User.Microservice.Operations
         public async Task<ActionResult<UserViewModel>> Login([FromBody] LoginUserViewModel loginUser){
             try
             {
-                var validator = new LoginUserValidator();
+               var validator = new LoginUserValidator();
 
                 var validate = validator.Validate(loginUser);
 
@@ -66,10 +66,17 @@ namespace User.Microservice.Operations
                 var response = _mapper.Map<UserViewModel>(userLogin);
 
                 if(response == null){
-                    return HandleErrorResponse(HttpStatusCode.Unauthorized, "Phone ou Password incorrect");
+                    return HandleErrorResponse(HttpStatusCode.Unauthorized, "PHONE_OR_PASSWORD_INCORRECT");
                 }
 
-                return HandleCreatedResponse(response);
+                LoginUserResponseViewModel userLogged = new LoginUserResponseViewModel();
+
+                Response.Cookies.Append("X-Refresh-Token", userLogin.RefreshToken, new CookieOptions(){HttpOnly = true, SameSite = SameSiteMode.Strict});
+                Response.Cookies.Append("X-Access-Token", userLogin.Token, new CookieOptions(){HttpOnly = true, SameSite = SameSiteMode.Strict});
+                userLogged.User = response;
+                userLogged.Token = userLogin.Token;
+
+                return HandleCreatedResponse(userLogged);
             }
             catch (Exception ex)
             {
@@ -83,22 +90,17 @@ namespace User.Microservice.Operations
         [ProducesResponseType(StatusCodes.Status400BadRequest)]  
         [HttpPost("refresh/token")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserViewModel>> RefreshToken([FromBody] RefreshTokenUserViewModel refreshTokenUser){
+        public async Task<ActionResult<UserViewModel>> RefreshToken(){
             try
             {
-                var validator = new RefreshTokenUserValidator();
-
-                var validate = validator.Validate(refreshTokenUser);
-
-                if(!validate.IsValid){
-                    return HandleErrorResponse(HttpStatusCode.BadRequest, validate.ToString());
-                }
+                if (!(Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
+                    return BadRequest();
 
             
-                var User = await _userService.GetSingleByRefreshTokenAsync(refreshTokenUser.RefreshToken);
+                var User = await _userService.GetSingleByRefreshTokenAsync(refreshToken);
 
                 if(User == null){
-                    return HandleErrorResponse(HttpStatusCode.NotFound, "user not found");
+                    return HandleErrorResponse(HttpStatusCode.NotFound, "USER_NOT_FOUND");
                 }
 
 
@@ -107,7 +109,14 @@ namespace User.Microservice.Operations
 
                 User.RefreshToken = refresh;
                 var updated = await _userService.UpdateUserAsync(User);
-                updated.Token = token;
+
+                var response = _mapper.Map<UserViewModel>(updated);
+                LoginUserResponseViewModel userLogged = new LoginUserResponseViewModel();
+
+                Response.Cookies.Append("X-Refresh-Token", refresh, new CookieOptions(){HttpOnly = true, SameSite = SameSiteMode.Strict});
+                Response.Cookies.Append("X-Access-Token", token, new CookieOptions(){HttpOnly = true, SameSite = SameSiteMode.Strict});
+                userLogged.User = response;
+                userLogged.Token = token;
 
                 return HandleCreatedResponse(updated);
             }
