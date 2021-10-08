@@ -157,7 +157,11 @@ namespace User.Microservice
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseCors();
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials());
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "User.Microservice");
