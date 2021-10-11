@@ -118,7 +118,42 @@ namespace User.Microservice.Operations
                 userLogged.User = response;
                 userLogged.Token = token;
 
-                return HandleCreatedResponse(updated);
+                return HandleCreatedResponse(userLogged);
+            }
+            catch (Exception ex)
+            {
+                return HandleErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        
+        
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]  
+        [HttpGet("authenticated")]
+        [AllowAnonymous]
+        public async Task<ActionResult<UserViewModel>> UserAuthenticated(){
+            try
+            {
+                 if (!(Request.Cookies.TryGetValue("X-Access-Token", out var accessToken)))
+                    return BadRequest();
+
+                var access = Request.Cookies.Where(x => x.Key == "X-Access-Token").FirstOrDefault();
+                accessToken = access.Value;
+                var handler = new JwtSecurityTokenHandler();
+                var token = handler.ReadJwtToken(accessToken);
+                var mobile = token.Claims.Where(x => x.Type == ClaimTypes.MobilePhone).FirstOrDefault();
+                
+                var userPhone = mobile.Value;
+                var User = await _userService.GetUserByPhoneAsync(userPhone);
+
+                if(User == null){
+                    return HandleErrorResponse(HttpStatusCode.NotFound, "USER_NOT_FOUND");
+                }
+
+                return HandleCreatedResponse(User);
             }
             catch (Exception ex)
             {
