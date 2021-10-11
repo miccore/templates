@@ -1,1 +1,0 @@
-dotnet restore ../Gateway.WebApi/Gateway.WebApi.csproj;dotnet publish ../Gateway.WebApi/Gateway.WebApi.csproj -c Release;cp ../Gateway.WebApi/bin/Release/netcoreapp3.1/ocelot.json .;dotnet ../Gateway.WebApi/bin/Release/netcoreapp3.1/Gateway.WebApi.dll;
