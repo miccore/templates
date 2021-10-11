@@ -47,7 +47,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44374
+          "Port": 55473
         }
       ],
       "UpstreamPathTemplate": "/api/user/refresh/token",
@@ -67,19 +67,19 @@
       "UpstreamHttpMethod": [ "POST", "GET" ],
       "SwaggerKey": "Users"
     },
-		{ 
-			"DownstreamPathTemplate": "/user/authenticated",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host":"localhost",
-					"Port": 55473
-				}
-			],
-			"UpstreamPathTemplate": "/api/user/authenticated",
-			"UpstreamHttpMethod":[ "GET", "OPTIONS" ],
-			"SwaggerKey": "Users"
-		}, 
+	{ 
+		"DownstreamPathTemplate": "/user/authenticated",
+		"DownstreamScheme": "http",
+		"DownstreamHostAndPorts": [
+			{
+				"Host":"localhost",
+				"Port": 55473
+			}
+		],
+		"UpstreamPathTemplate": "/api/user/authenticated",
+		"UpstreamHttpMethod":[ "GET", "OPTIONS" ],
+		"SwaggerKey": "Users"
+	}, 
     {
       "DownstreamPathTemplate": "/user/{id}",
       "DownstreamScheme": "http",
