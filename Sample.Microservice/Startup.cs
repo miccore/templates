@@ -125,9 +125,10 @@ namespace Sample.Microservice
             app.UseRouting();
 
             app.UseStaticFiles();
-            app.UseAuthorization();
             app.UseSwagger();
             app.UseCors();
+            app.UseAuthorization();
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample.Microservice");
