@@ -3,4 +3,5 @@ WORKDIR /app
 
 COPY ./User.Microservice/bin/Release/net5.0/publish/. .
 ENV ASPNETCORE_URLS http://*:80
+RUN mkdir wwwroot
 ENTRYPOINT ["dotnet", "User.Microservice.dll"]
