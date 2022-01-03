@@ -1,8 +1,8 @@
 using AutoMapper;
-using Sample.Microservice.Repositories.Sample.DtoModels;
-using Sample.Microservice.Services.Sample.DomainModels;
+using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
+using Miccore.Net.webapi_template.Sample.Api.Services.Sample.DomainModels;
 
-namespace Sample.Microservice.Services.Sample.MapperProfiles
+namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample.MapperProfiles
 {
     public class SampleProfile : Profile
     {

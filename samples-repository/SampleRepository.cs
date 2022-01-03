@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
-using Sample.Microservice.Repositories.Sample.DtoModels;
-using Sample.Microservice.Data;
+using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
+using Miccore.Net.webapi_template.Sample.Api.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Sample.Microservice.Repositories.Sample {
+namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
     public class SampleRepository : ISampleRepository {
         private readonly IApplicationDbContext _context;

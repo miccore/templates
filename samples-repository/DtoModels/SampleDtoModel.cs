@@ -1,8 +1,8 @@
 using System;
-using Sample.Microservice.Entities;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Sample.Microservice.Repositories.Sample.DtoModels {
+namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels {
     
     [Table("Samples")]
     public class SampleDtoModel : BaseEntity {

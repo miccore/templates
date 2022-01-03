@@ -2,13 +2,13 @@ using System;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sample.Microservice.Services.Sample.DomainModels;
-using Sample.Microservice.Repositories.Sample.DtoModels;
-using Sample.Microservice.Services.Sample;
-using Sample.Microservice.Repositories.Sample;
+using Miccore.Net.webapi_template.Sample.Api.Services.Sample.DomainModels;
+using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
+using Miccore.Net.webapi_template.Sample.Api.Services.Sample;
+using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample;
 
 
-namespace Sample.Microservice.Services.Sample {
+namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample {
 
     public class SampleService : ISampleService {
 

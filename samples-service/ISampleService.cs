@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sample.Microservice.Services.Sample.DomainModels;
+using Miccore.Net.webapi_template.Sample.Api.Services.Sample.DomainModels;
 
-namespace Sample.Microservice.Services.Sample {
+namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample {
 
     public interface ISampleService{
 

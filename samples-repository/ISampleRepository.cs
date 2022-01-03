@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sample.Microservice.Repositories.Sample.DtoModels;
+using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
 
-namespace Sample.Microservice.Repositories.Sample {
+namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
     public interface ISampleRepository{
 

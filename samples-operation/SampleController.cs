@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sample.Microservice.Data;
+using Miccore.Net.webapi_template.Sample.Api.Data;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Sample.Microservice.Services.Sample;
-using Sample.Microservice.Services.Sample.DomainModels;
-using Sample.Microservice.Operations.Sample.ViewModels;
-using Sample.Microservice.Operations.Sample.Validator;
+using Miccore.Net.webapi_template.Sample.Api.Services.Sample;
+using Miccore.Net.webapi_template.Sample.Api.Services.Sample.DomainModels;
+using Miccore.Net.webapi_template.Sample.Api.Operations.Sample.ViewModels;
+using Miccore.Net.webapi_template.Sample.Api.Operations.Sample.Validator;
 using AutoMapper;
 using System.Diagnostics.Contracts;
 
-namespace Sample.Microservice.Operations
+namespace Miccore.Net.webapi_template.Sample.Api.Operations
 {
     [Route("[controller]")]
     [ApiController]

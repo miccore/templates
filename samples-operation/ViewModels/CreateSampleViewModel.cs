@@ -1,7 +1,7 @@
 using System;
-using Sample.Microservice.Entities;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
-namespace Sample.Microservice.Operations.Sample.ViewModels {
+namespace Miccore.Net.webapi_template.Sample.Api.Operations.Sample.ViewModels {
 
     public class CreateSampleViewModel {
        

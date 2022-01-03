@@ -1,7 +1,7 @@
 using FluentValidation;
-using Sample.Microservice.Operations.Sample.ViewModels;
+using Miccore.Net.webapi_template.Sample.Api.Operations.Sample.ViewModels;
 
-namespace Sample.Microservice.Operations.Sample.Validator{
+namespace Miccore.Net.webapi_template.Sample.Api.Operations.Sample.Validator{
     public class UpdateSampleValidator : AbstractValidator<UpdateSampleViewModel> {
         public UpdateSampleValidator() {
 
