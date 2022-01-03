@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Gateway.WebApi
+namespace Miccore.Net.webapi_template.Gateway.WebApi
 {
     public class Program
     {
