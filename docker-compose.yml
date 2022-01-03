@@ -74,8 +74,6 @@ services:
       - '80'
     ports: 
       - "5000:80"
-    depends_on:
-        - db
     environment: 
       PMA_HOST: db
       PMA_DB: db-name
