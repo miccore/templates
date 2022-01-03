@@ -91,7 +91,7 @@ services:
     depends_on:
       - db
     build: 
-      context: ./User.Microservice
+      context: ./User.Api
       dockerfile: Dockerfile.User
     expose: 
       - '80'

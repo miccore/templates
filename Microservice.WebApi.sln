@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.WebApi", "Gateway.WebApi\Gateway.WebApi.csproj", "{344168F9-2C61-4B23-A098-92A58D451369}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User.Microservice", "User.Microservice", "{703A7701-732A-48CB-9E65-6221C0F7017E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User.Api", "User.Api", "{703A7701-732A-48CB-9E65-6221C0F7017E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Test.Microservice", "User.Microservice\User.Test.Microservice\User.Test.Microservice.csproj", "{C88D2AAC-D454-4F6A-BE89-6D39B8A46D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Api.Test", "User.Api\User.Api.Test\User.Api.Test.csproj", "{C88D2AAC-D454-4F6A-BE89-6D39B8A46D6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Microservice", "User.Microservice\User.Microservice\User.Microservice.csproj", "{00A05BC7-C8E7-45A2-B007-604D791598D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Api", "User.Api\User.Api\User.Api.csproj", "{00A05BC7-C8E7-45A2-B007-604D791598D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

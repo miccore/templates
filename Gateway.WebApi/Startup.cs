@@ -14,7 +14,7 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Microsoft.OpenApi.Models;
 
-namespace Gateway.WebApi
+namespace Miccore.Net.webapi_template.Gateway.WebApi
 {
     public class Startup
     {

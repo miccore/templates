@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Miccore.Net.webapi_template.User.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiException.#ctor(Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators.ApiHttpStatusCode,System.Object,System.Collections.Generic.IEnumerable{Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiError})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiException"/> class.
+            </summary>
+            <param name="httpStatusCode"></param>
+            <param name="data"></param>
+            <param name="apiErrors"></param>
+        </member>
+        <member name="M:Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiException.#ctor(Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators.ApiHttpStatusCode,System.Object,System.Collections.Generic.IEnumerable{Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiError},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiException"/> class.
+            </summary>
+            <param name="httpStatusCode"></param>
+            <param name="data"></param>
+            <param name="apiErrors"></param>
+            <param name="message"></param>
+        </member>
+        <member name="P:Miccore.Net.webapi_template.User.Api.Data.ApplicationDbContext.User#Microservice#Data#IApplicationDbContext#Users">
+            Begin DBContext Adding 
+        </member>
+        <member name="M:Miccore.Net.webapi_template.User.Api.Data.ApplicationDbContext.SaveChanges">
+            End DBContext Adding 
+        </member>
+        <member name="P:Miccore.Net.webapi_template.User.Api.Data.IApplicationDbContext.Users">
+            Begin Interface DBContext Adding 
+        </member>
+        <member name="M:Miccore.Net.webapi_template.User.Api.Data.IApplicationDbContext.SaveChanges">
+            End Interface DBContext Adding 
+        </member>
+    </members>
+</doc>

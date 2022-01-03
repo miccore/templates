@@ -1,4 +1,5 @@
 {
+    "companyName": "Miccore.Net",
     "name": "webapi_template",
     "version": "1.0.0",
     "projects":[
@@ -10,7 +11,7 @@
             "services": []
         },
         {
-            "name": "User.Microservice",
+            "name": "User.Api",
             "port": "55473",
             "dockerUrl": "192.168.10.5",
             "references": [],
