@@ -2,6 +2,7 @@ volumes:
     dbdata:
 networks:
   static_network:
+    name: "webapi_template_network"
     driver: bridge
     ipam:
       config:
