@@ -20,16 +20,17 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
         public async Task<SampleDtoModel> Create(SampleDtoModel sample)
         {
-           await _context.Samples.AddAsync(sample);
-           await _context.SaveChanges();
+            sample.CreatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
+            await _context.Samples.AddAsync(sample);
+            await _context.SaveChanges();
 
            return sample;
         }
 
         public async Task<int> DeleteAsync(int id)
         {
-           var dto = _context.Samples.FirstOrDefault(x => x.Id == id);
-            _context.Samples.Remove(dto);
+            var dto = _context.Samples.FirstOrDefault(x => x.Id == id);
+            dto.DeletedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();
 
             return id;
@@ -37,22 +38,25 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
         public async Task<IEnumerable<SampleDtoModel>> GetAllAsync()
         {
-            var samples = await _context.Samples.ToListAsync();
+            var samples = await _context.Samples
+                                        .Where(x => x.DeletedAt != null)
+                                        .ToListAsync();
             
             return samples;
         }
 
         public async Task<SampleDtoModel> GetSingleAsync(int id)
         {
-            var sample =  await _context.Samples.FirstOrDefaultAsync(x => x.Id == id);
+            var sample =  await _context.Samples.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt != null);
             return sample;
         }
 
         public async Task<SampleDtoModel> UpdateAsync(SampleDtoModel sample)
         {
             Contract.Requires(sample != null);
-            var dto = await _context.Samples.FirstOrDefaultAsync(x => x.Id == sample.Id);
+            var dto = await _context.Samples.FirstOrDefaultAsync(x => x.Id == sample.Id && x.DeletedAt != null);
             dto = sample;
+            dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();
 
             return sample;
