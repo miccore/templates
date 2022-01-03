@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Miccore.Net.webapi_template.User.Api</name>
+        <name>User.Api</name>
     </assembly>
     <members>
         <member name="M:Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiException.#ctor(Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators.ApiHttpStatusCode,System.Object,System.Collections.Generic.IEnumerable{Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.ApiError})">
