@@ -30,7 +30,7 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
         public async Task<int> DeleteAsync(int id)
         {
             var dto = _context.Samples.FirstOrDefault(x => x.Id == id);
-            dto.deletedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
+            dto.DeletedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();
 
             return id;
