@@ -20,6 +20,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Services.User {
         Task<UserDomainModel> GetSingleByRefreshTokenAsync(string refresh);
         Task<UserDomainModel> GetUserByPhoneAsync(string phone);
         Task<UserDomainModel> GetUserByEmailAsync(string Email);
+        Task<UserDomainModel> UpdateRefreshTokenAsync(UserDomainModel User);
     }
 
 }
