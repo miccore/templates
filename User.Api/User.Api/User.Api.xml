@@ -21,7 +21,7 @@
             <param name="apiErrors"></param>
             <param name="message"></param>
         </member>
-        <member name="P:Miccore.Net.webapi_template.User.Api.Data.ApplicationDbContext.User#Microservice#Data#IApplicationDbContext#Users">
+        <member name="P:Miccore.Net.webapi_template.User.Api.Data.ApplicationDbContext.Miccore#Net#webapi_template#User#Api#Data#IApplicationDbContext#Users">
             Begin DBContext Adding 
         </member>
         <member name="M:Miccore.Net.webapi_template.User.Api.Data.ApplicationDbContext.SaveChanges">

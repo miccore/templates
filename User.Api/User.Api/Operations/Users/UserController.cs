@@ -20,6 +20,8 @@ using Miccore.Net.webapi_template.User.Api.Operations.ApiResponses;
 using System.Net.Http;
 using Miccore.Net.webapi_template.User.Api.Entities;
 using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Miccore.Net.webapi_template.User.Api.Operations
 {
