@@ -1,8 +1,8 @@
 using System;
-using Miccore.Net.webapi_template.User.Api.Entities;
-using Miccore.Net.webapi_template.User.Api.Operations.Role.ViewModels;
+using  Miccore.Net.webapi_template.User.Api.Entities;
+using  Miccore.Net.webapi_template.User.Api.Operations.Role.ViewModels;
 
-namespace Miccore.Net.webapi_template.User.Api.Operations.User.ViewModels {
+namespace  Miccore.Net.webapi_template.User.Api.Operations.User.ViewModels {
 
     public class UserViewModel : BaseEntity {
        

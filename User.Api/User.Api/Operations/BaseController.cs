@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Miccore.Net.webapi_template.User.Api.Operations.ApiResponses;
+using  Miccore.Net.webapi_template.User.Api.Operations.ApiResponses;
 
-namespace Miccore.Net.webapi_template.User.Api.Operations
+namespace  Miccore.Net.webapi_template.User.Api.Operations
 {
     [EnableCors("AllowSpecificOrigin")]
     [Route("api/v1/")]
@@ -45,5 +45,8 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         {
             return StatusCode((int)HttpStatusCode.NoContent);
         }
+
+        // record for Url query parameter
+        public record UrlQueryParameters(int Limit = 50, int Page = 1);
     }
 }

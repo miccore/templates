@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
-using Miccore.Net.webapi_template.User.Api.Data;
+using  Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
+using  Miccore.Net.webapi_template.User.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
-namespace Miccore.Net.webapi_template.User.Api.Repositories.Role {
+namespace  Miccore.Net.webapi_template.User.Api.Repositories.Role {
 
     public class RoleRepository : IRoleRepository {
         private readonly IApplicationDbContext _context;
@@ -36,11 +38,12 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.Role {
             return id;
         }
 
-        public async Task<IEnumerable<RoleDtoModel>> GetAllAsync()
+        public async Task<PaginationEntity<RoleDtoModel>> GetAllAsync(int page, int limit)
         {
             var roles = await _context.Roles
-                                    .Where(x => x.DeletedAt != null)
-                                    .ToListAsync();
+                                    .Where(x => x.DeletedAt != null) 
+                                    .OrderBy(x => x.CreatedAt)   
+                                    .PaginateAsync(page, limit);
             
             return roles;
         }
@@ -55,9 +58,6 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.Role {
         {
             Contract.Requires(role != null);
             var dto = await _context.Roles.FirstOrDefaultAsync(x => x.Id == role.Id && x.DeletedAt != null);
-            if(dto == null){
-                return null;
-            }
             dto = role;
             dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();

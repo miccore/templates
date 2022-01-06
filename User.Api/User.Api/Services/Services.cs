@@ -11,22 +11,22 @@
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using AutoMapper;
     using Microsoft.AspNetCore.Hosting;
-    using Miccore.Net.webapi_template.User.Api.Data;
+    using  Miccore.Net.webapi_template.User.Api.Data;
 
-    using Miccore.Net.webapi_template.User.Api.Repositories.User;
-    using Miccore.Net.webapi_template.User.Api.Services.User;
-    using Miccore.Net.webapi_template.User.Api.Operations.User.MapperProfiles;
-    using Miccore.Net.webapi_template.User.Api.Services.User.MapperProfiles;
+    using  Miccore.Net.webapi_template.User.Api.Repositories.User;
+    using  Miccore.Net.webapi_template.User.Api.Services.User;
+    using  Miccore.Net.webapi_template.User.Api.Operations.User.MapperProfiles;
+    using  Miccore.Net.webapi_template.User.Api.Services.User.MapperProfiles;
 
-    using Miccore.Net.webapi_template.User.Api.Repositories.Role;
-    using Miccore.Net.webapi_template.User.Api.Services.Role;
-    using Miccore.Net.webapi_template.User.Api.Operations.Role.MapperProfiles;
-    using Miccore.Net.webapi_template.User.Api.Services.Role.MapperProfiles;
+    using  Miccore.Net.webapi_template.User.Api.Repositories.Role;
+    using  Miccore.Net.webapi_template.User.Api.Services.Role;
+    using  Miccore.Net.webapi_template.User.Api.Operations.Role.MapperProfiles;
+    using  Miccore.Net.webapi_template.User.Api.Services.Role.MapperProfiles;
 
 /* End Import */
 
 
-namespace Miccore.Net.webapi_template.User.Api.Services {
+namespace  Miccore.Net.webapi_template.User.Api.Services {
 
 
     public class Service{
@@ -41,6 +41,7 @@ namespace Miccore.Net.webapi_template.User.Api.Services {
         public void addService(){
 
             /** Begin Injection  */
+            
                 // _services.AddTransient<IStartupFilter, DBContextMigration<ApplicationDbContext>>();
                 
                 _services.TryAddScoped<IUserRepository, UserRepository>();

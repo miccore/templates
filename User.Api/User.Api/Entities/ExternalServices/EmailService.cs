@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 
-namespace Miccore.Net.webapi_template.User.Api.Entities
+namespace  Miccore.Net.webapi_template.User.Api.Entities
 {
     public interface IEmailService
     {

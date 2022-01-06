@@ -1,7 +1,7 @@
 using FluentValidation;
-using Miccore.Net.webapi_template.User.Api.Operations.User.ViewModels;
+using  Miccore.Net.webapi_template.User.Api.Operations.User.ViewModels;
 
-namespace Miccore.Net.webapi_template.User.Api.Operations.User.Validator{
+namespace  Miccore.Net.webapi_template.User.Api.Operations.User.Validator{
     public class RefreshTokenUserValidator : AbstractValidator<RefreshTokenUserViewModel> {
         public RefreshTokenUserValidator() {
 

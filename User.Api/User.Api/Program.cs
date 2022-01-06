@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Miccore.Net.webapi_template.User.Api
+namespace  Miccore.Net.webapi_template.User.Api
 {
     public class Program
     {

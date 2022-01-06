@@ -1,12 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Miccore.Net.webapi_template.User.Api.Entities;
-using Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
+using  Miccore.Net.webapi_template.User.Api.Entities;
+using  Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 
-namespace Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels {
+namespace  Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels {
 
     [Table("Users")]
     public class UserDtoModel : BaseEntity {

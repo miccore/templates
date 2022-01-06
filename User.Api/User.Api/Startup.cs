@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Data;
+using  Miccore.Net.webapi_template.User.Api.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -19,14 +19,15 @@ using System.Reflection;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 
-using Miccore.Net.webapi_template.User.Api.Services;
+using  Miccore.Net.webapi_template.User.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using JWTAuthentication.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
-
-namespace Miccore.Net.webapi_template.User.Api
+namespace  Miccore.Net.webapi_template.User.Api
 {
     public class Startup
     {
@@ -108,7 +109,15 @@ namespace Miccore.Net.webapi_template.User.Api
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
-            services.AddControllers();
+            services.AddControllers()
+                    .AddJsonOptions(ops =>
+                    {
+                        ops.JsonSerializerOptions.IgnoreNullValues = true;
+                        ops.JsonSerializerOptions.WriteIndented = true;
+                        ops.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                        ops.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                        ops.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    });
             services.AddMvc().AddFluentValidation();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -121,8 +130,8 @@ namespace Miccore.Net.webapi_template.User.Api
                             ValidateAudience = true,
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
-                            ValidIssuer = "http://localhost:55473/",
-                            ValidAudience = "http://localhost:55473/",
+                            ValidIssuer = "http://localhost:44373/",
+                            ValidAudience = "http://localhost:44373/",
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("322e9998-f1f0-494a-9b9d-aea4e0008888")),
                             ClockSkew = TimeSpan.Zero
                         };
@@ -171,6 +180,7 @@ namespace Miccore.Net.webapi_template.User.Api
             {
                 endpoints.MapControllers();
             });
+
 
         }
 

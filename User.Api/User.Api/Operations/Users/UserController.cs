@@ -2,28 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Data;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Miccore.Net.webapi_template.User.Api.Services.User;
-using Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
-using Miccore.Net.webapi_template.User.Api.Operations.User.ViewModels;
-using Miccore.Net.webapi_template.User.Api.Operations.User.Validator;
+using  Miccore.Net.webapi_template.User.Api.Services.User;
+using  Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
+using  Miccore.Net.webapi_template.User.Api.Operations.User.ViewModels;
+using  Miccore.Net.webapi_template.User.Api.Operations.User.Validator;
 using AutoMapper;
 using System.Diagnostics.Contracts;
-using Miccore.Net.webapi_template.User.Api.Services.Role;
+using  Miccore.Net.webapi_template.User.Api.Services.Role;
 using Microsoft.AspNetCore.Authorization;
 using JWTAuthentication.Models;
-using Miccore.Net.webapi_template.User.Api.Operations.ApiResponses;
-using System.Net.Http;
-using Miccore.Net.webapi_template.User.Api.Entities;
-using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
-namespace Miccore.Net.webapi_template.User.Api.Operations
+namespace  Miccore.Net.webapi_template.User.Api.Operations
 {
     [Route("[controller]")]
     [ApiController]
@@ -33,6 +29,7 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
         private readonly IMapper _mapper;
+        
         public UserController(
             IMapper mapper,
             IUserService userService,
@@ -44,13 +41,14 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
             _mapper = mapper;
         }
 
+       
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]  
-        [HttpPost("login")]
+        [HttpPost(template: "login", Name = nameof(LoginUser))]
         [AllowAnonymous]
-        public async Task<ActionResult<UserViewModel>> Login([FromBody] LoginUserViewModel loginUser){
+        public async Task<ActionResult<UserViewModel>> LoginUser([FromBody] LoginUserViewModel loginUser){
             try
             {
                var validator = new LoginUserValidator();
@@ -90,9 +88,9 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]  
-        [HttpPost("refresh/token")]
+        [HttpPost(template:"refresh/token", Name = nameof(UserRefreshToken))]
         [AllowAnonymous]
-        public async Task<ActionResult<UserViewModel>> RefreshToken(){
+        public async Task<ActionResult<UserViewModel>> UserRefreshToken(){
             try
             {
                 if (!(Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
@@ -127,14 +125,12 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
                 return HandleErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-        
-        
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]  
-        [HttpGet("authenticated")]
+        [HttpGet(template:"authenticated", Name = nameof(UserAuthenticated))]
         [AllowAnonymous]
         public async Task<ActionResult<UserViewModel>> UserAuthenticated(){
             try
@@ -154,7 +150,7 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
                 if(User == null){
                     return HandleErrorResponse(HttpStatusCode.NotFound, "USER_NOT_FOUND");
                 }
-
+                
                 return HandleCreatedResponse(User);
             }
             catch (Exception ex)
@@ -168,9 +164,9 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPost]
+        [HttpPost(Name = nameof(CreateUser))]
         [AllowAnonymous]
-        public async Task<ActionResult<UserViewModel>> Create([FromBody] CreateUserViewModel viewModel)
+        public async Task<ActionResult<UserViewModel>> CreateUser([FromBody] CreateUserViewModel viewModel)
         {
 
             try
@@ -216,15 +212,35 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet]
-        public async Task<ActionResult<List<UserViewModel>>> GetAll()
+        [HttpGet(Name = nameof(GetAllUsers))]
+        public async Task<ActionResult<PaginationEntity<UserViewModel>>> GetAllUsers([FromQuery] UrlQueryParameters urlQueryParameters)
         {
             try
             {
-                var users = await _userService.GetAllUsersAsync();
+                // get all paginated users
+                var users = await _userService.GetAllUsersAsync(urlQueryParameters.Page, urlQueryParameters.Limit);
+                // mapping the response
+                var response = _mapper.Map<PaginationEntity<UserViewModel>>(users);
+                // add previous route link if exist
+                if (response.CurrentPage > 1)
+                {
+                    // generate previous route
+                    var prevRoute = Url.RouteUrl(nameof(GetAllUsers), new { limit = urlQueryParameters.Limit, page = urlQueryParameters.Page - 1 });
+                    response.Prev = prevRoute;
+                    // add the route to dictionnary links
+                    // response.AddResourceLink(LinkedResourceType.Prev, prevRoute);
 
-                var response = _mapper.Map<List<UserViewModel>>(users);
-
+                }
+                //add next route link if exist
+                if (response.CurrentPage < response.TotalPages)
+                {
+                    // generate next route
+                    var nextRoute = Url.RouteUrl(nameof(GetAllUsers), new { limit = urlQueryParameters.Limit, page = urlQueryParameters.Page + 1 });
+                    response.Next = nextRoute;
+                    // add the route to dictionnary links
+                    // response.AddResourceLink(LinkedResourceType.Next, nextRoute);
+                }
+                // handle success response
                 return HandleSuccessResponse(response);
             }
             catch (Exception ex)
@@ -238,9 +254,9 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet("{id}")]
+        [HttpGet(template:"{id}", Name = nameof(GetUserById))]
         [AllowAnonymous]
-        public async Task<ActionResult<UserViewModel>> GetById(int id)
+        public async Task<ActionResult<UserViewModel>> GetUserById(int id)
         {
             try
             {
@@ -263,8 +279,8 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete(template:"{id}", Name = nameof(DeleteUser))]
+        public async Task<IActionResult> DeleteUser(int id)
         {
             try
             {
@@ -284,8 +300,8 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPut("{id}")]
-        public async Task<ActionResult<UserViewModel>> Update(int id, [FromBody] UserViewModel viewModel)
+        [HttpPut(template:"{id}", Name = nameof(UpdateUser))]
+        public async Task<ActionResult<UserViewModel>> UpdateUser(int id, [FromBody] UserViewModel viewModel)
         {
            try
             {
@@ -312,12 +328,12 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
             }
         }
 
-         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPut("{id}/update/password")]
-        public async Task<ActionResult<UserViewModel>> UpdatePassword(int id, [FromBody] UserPasswordViewModel viewModel)
+        [HttpPut(template:"{id}/update/password", Name = nameof(UpdateUserPassword))]
+        public async Task<ActionResult<UserViewModel>> UpdateUserPassword(int id, [FromBody] UserPasswordViewModel viewModel)
         {
            try
             {
@@ -355,9 +371,9 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPut("{email}/reinitialize/password")]
+        [HttpPut(template: "{email}/reinitialize/password", Name = nameof(ReinitializeUserPassword))]
         [AllowAnonymous]
-        public async Task<ActionResult<UserViewModel>> ReinitializePassword(string email)
+        public async Task<ActionResult<UserViewModel>> ReinitializeUserPassword(string email)
         {
             
              try{
@@ -381,9 +397,6 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
                     return HandleErrorResponse(HttpStatusCode.NotFound, "Client doesn't exit or password doesn't match");
                 }
 
-                EmailService emailSend = new EmailService();
-                emailSend.SendText(null, email, "Reset Password", $"New Password : {pw}");
-
                 // 200 response
                 return HandleSuccessResponse(response);
 
@@ -393,5 +406,8 @@ namespace Miccore.Net.webapi_template.User.Api.Operations
                 return HandleErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+
+        
     }
 }

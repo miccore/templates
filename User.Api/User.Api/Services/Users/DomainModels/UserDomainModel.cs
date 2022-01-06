@@ -1,7 +1,7 @@
 using System;
-using Miccore.Net.webapi_template.User.Api.Entities;
-using Miccore.Net.webapi_template.User.Api.Services.Role.DomainModels;
-namespace Miccore.Net.webapi_template.User.Api.Services.User.DomainModels{
+using  Miccore.Net.webapi_template.User.Api.Entities;
+using  Miccore.Net.webapi_template.User.Api.Services.Role.DomainModels;
+namespace  Miccore.Net.webapi_template.User.Api.Services.User.DomainModels{
 
     public class UserDomainModel : BaseEntity {
         

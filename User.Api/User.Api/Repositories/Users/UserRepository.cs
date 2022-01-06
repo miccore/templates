@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
-using Miccore.Net.webapi_template.User.Api.Data;
+using  Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
+using  Miccore.Net.webapi_template.User.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using BC = BCrypt.Net.BCrypt;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
-namespace Miccore.Net.webapi_template.User.Api.Repositories.User {
+namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
 
     public class UserRepository : IUserRepository {
         private readonly IApplicationDbContext _context;
@@ -21,7 +23,7 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.User {
 
        public async Task<UserDtoModel> AuthenticateUser(UserDtoModel user)
         {
-            var userGet = await _context.Users.SingleOrDefaultAsync(x => x.Phone == user.Phone && x.DeletedAt != null);
+            var userGet = await _context.Users.SingleOrDefaultAsync(x => x.Phone == user.Phone  && x.DeletedAt != null);
             if (userGet == null || !BC.Verify(user.Password, userGet.Password))
             {
                 return null;
@@ -49,12 +51,13 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.User {
             return id;
         }
 
-        public async Task<IEnumerable<UserDtoModel>> GetAllAsync()
+        public async Task<PaginationEntity<UserDtoModel>> GetAllAsync(int page, int limit)
         {
             var users = await _context.Users
                                     .Include(x => x.Role)
                                     .Where(x => x.DeletedAt != null)
-                                    .ToListAsync();
+                                    .OrderBy(x => x.CreatedAt)
+                                    .PaginateAsync(page, limit);
             
             return users;
         }
@@ -98,7 +101,7 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.User {
             var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id && x.DeletedAt != null);
             if (dto == null)
             {
-                return null;
+                return new UserDtoModel();
             }
             dto.FirstName = user.FirstName;
             dto.LastName = user.LastName;
@@ -116,7 +119,7 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.User {
             var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id && x.DeletedAt != null);
             if (dto == null)
             {
-                return null;
+                return new UserDtoModel();
             }
             dto.RefreshToken = user.RefreshToken;
             dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
@@ -125,12 +128,13 @@ namespace Miccore.Net.webapi_template.User.Api.Repositories.User {
             return dto;
         }
 
+
          public async Task<UserDtoModel> UpdatePasswordAsync(int id, string oldpassword, string newpassword)
         {
             var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
              if (dto == null || !BC.Verify(oldpassword, dto.Password))
             {
-                return null;
+                return new UserDtoModel();
             }
 
             dto.Password = BC.HashPassword(newpassword);

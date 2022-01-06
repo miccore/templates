@@ -1,12 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
-using Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
+/** Begin Import */
 
-namespace Miccore.Net.webapi_template.User.Api.Data
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using  Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
+    using  Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
+
+/* End Import */
+
+namespace  Miccore.Net.webapi_template.User.Api.Data
 {
     public interface IApplicationDbContext
     {

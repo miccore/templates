@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
+using Miccore.Net.webapi_template.User.Api.Entities;
+using  Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
 
-namespace Miccore.Net.webapi_template.User.Api.Services.User {
+namespace  Miccore.Net.webapi_template.User.Api.Services.User {
 
     public interface IUserService{
 
-
-        Task<IEnumerable<UserDomainModel>> GetAllUsersAsync();
         Task<UserDomainModel> GetUserAsync(int id);
         Task<UserDomainModel> LoginUserAsync(UserDomainModel User);
         Task<UserDomainModel> CreateUserAsync(UserDomainModel User);
@@ -21,6 +20,7 @@ namespace Miccore.Net.webapi_template.User.Api.Services.User {
         Task<UserDomainModel> GetUserByPhoneAsync(string phone);
         Task<UserDomainModel> GetUserByEmailAsync(string Email);
         Task<UserDomainModel> UpdateRefreshTokenAsync(UserDomainModel User);
+        Task<PaginationEntity<UserDomainModel>> GetAllUsersAsync(int page, int limit);
     }
 
 }

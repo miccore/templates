@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Miccore.Net.webapi_template.User.Api.Entities
+namespace  Miccore.Net.webapi_template.User.Api.Entities
 {
     public abstract class BaseEntity
     {
         public int? Id { get; set; }
         
-        public int? CreatedAt { get; set; }
+        public int? CreatedAt { get; set;}
         
-        public int? UpdatedAt { get; set; }
+        public int? UpdatedAt { get; set;}
         
-        public int? DeletedAt { get; set; }
+        public int? DeletedAt { get; set;}
     }
 }

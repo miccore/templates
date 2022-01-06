@@ -1,4 +1,4 @@
-namespace Miccore.Net.webapi_template.User.Api.Operations.ApiResponses
+namespace  Miccore.Net.webapi_template.User.Api.Operations.ApiResponses
 {
     public class ApiError
     {

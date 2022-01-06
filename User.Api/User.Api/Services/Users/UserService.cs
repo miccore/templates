@@ -2,20 +2,21 @@ using System;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
-using Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
-using Miccore.Net.webapi_template.User.Api.Services.User;
-using Miccore.Net.webapi_template.User.Api.Repositories.User;
+using  Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
+using  Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
+using  Miccore.Net.webapi_template.User.Api.Services.User;
+using  Miccore.Net.webapi_template.User.Api.Repositories.User;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using Miccore.Net.webapi_template.User.Api.Services.Role;
+using  Miccore.Net.webapi_template.User.Api.Services.Role;
 using System.Security.Cryptography;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
-namespace Miccore.Net.webapi_template.User.Api.Services.User {
+namespace  Miccore.Net.webapi_template.User.Api.Services.User {
 
     public class UserService : IUserService {
 
@@ -42,10 +43,10 @@ namespace Miccore.Net.webapi_template.User.Api.Services.User {
             dUser.Role = role;
             var token = GenerateToken(dUser);
             dUser.Token = token;
+
             var refreshToken = GenerateRefreshToken();
             dUser.RefreshToken = refreshToken;
             getUser.RefreshToken = refreshToken;
-
             await _userRepository.UpdateRefreshTokenAsync(getUser);
 
             return dUser;
@@ -61,10 +62,10 @@ namespace Miccore.Net.webapi_template.User.Api.Services.User {
         public async Task<int> DeleteUserAsync(int id) => await _userRepository.DeleteAsync(id);
 
 
-        public async Task<IEnumerable<UserDomainModel>> GetAllUsersAsync()
+        public async Task<PaginationEntity<UserDomainModel>> GetAllUsersAsync(int page, int limit)
         {
-            var users = await _userRepository.GetAllAsync();
-            return _mapper.Map<List<UserDomainModel>>(users);
+            var users = await _userRepository.GetAllAsync(page, limit);
+            return _mapper.Map<PaginationEntity<UserDomainModel>>(users);
         }
 
         public async Task<UserDomainModel> GetUserAsync(int id)

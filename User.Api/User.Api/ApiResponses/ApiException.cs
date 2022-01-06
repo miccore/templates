@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators;
+using  Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators;
 
-namespace Miccore.Net.webapi_template.User.Api.Operations.ApiResponses
+namespace  Miccore.Net.webapi_template.User.Api.Operations.ApiResponses
 {
     public class ApiException : Exception
     {

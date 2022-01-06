@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Miccore.Net.webapi_template.User.Api
+namespace  Miccore.Net.webapi_template.User.Api
 {
     public class DBContextMigration<TContext> : IStartupFilter where TContext : DbContext
     {

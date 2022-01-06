@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators
+namespace  Miccore.Net.webapi_template.User.Api.Operations.ApiResponses.Enumerators
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:Enumeration items should be documented", Justification = "Enum names are self documenting.")]
     public enum ApiHttpStatusCode
