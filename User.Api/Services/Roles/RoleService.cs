@@ -6,7 +6,7 @@ using  Miccore.Net.webapi_template.User.Api.Services.Role.DomainModels;
 using  Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
 using  Miccore.Net.webapi_template.User.Api.Services.Role;
 using  Miccore.Net.webapi_template.User.Api.Repositories.Role;
-
+using Miccore.Net.webapi_template.User.Api.Entities;
 
 namespace  Miccore.Net.webapi_template.User.Api.Services.Role {
 
@@ -28,10 +28,10 @@ namespace  Miccore.Net.webapi_template.User.Api.Services.Role {
 
         public async Task<int> DeleteRoleAsync(int id) => await _roleRepository.DeleteAsync(id);
 
-        public async Task<IEnumerable<RoleDomainModel>> GetAllRolesAsync()
+        public async Task<PaginationEntity<RoleDomainModel>> GetAllRolesAsync(int page, int limit)
         {
-            var roles = await _roleRepository.GetAllAsync();
-            return _mapper.Map<List<RoleDomainModel>>(roles);
+            var roles = await _roleRepository.GetAllAsync(page, limit);
+            return _mapper.Map<PaginationEntity<RoleDomainModel>>(roles);
         }
 
         public async Task<RoleDomainModel> GetRoleAsync(int id)

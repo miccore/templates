@@ -7,6 +7,8 @@ using  Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
 using  Miccore.Net.webapi_template.User.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using BC = BCrypt.Net.BCrypt;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
 namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
 
@@ -49,12 +51,13 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
             return id;
         }
 
-        public async Task<IEnumerable<UserDtoModel>> GetAllAsync()
+        public async Task<PaginationEntity<UserDtoModel>> GetAllAsync(int page, int limit)
         {
             var users = await _context.Users
                                     .Include(x => x.Role)
                                     .Where(x => x.DeletedAt != null)
-                                    .ToListAsync();
+                                    .OrderBy(x => x.CreatedAt)
+                                    .PaginateAsync(page, limit);
             
             return users;
         }

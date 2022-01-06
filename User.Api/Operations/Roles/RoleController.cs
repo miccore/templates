@@ -15,6 +15,8 @@ using AutoMapper;
 using System.Diagnostics.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using JWTAuthentication.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
 namespace  Miccore.Net.webapi_template.User.Api.Operations
 {
@@ -39,8 +41,8 @@ namespace  Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPost]
-        public async Task<ActionResult<RoleViewModel>> Create([FromBody] CreateRoleViewModel viewModel)
+        [HttpPost(Name = nameof(CreateRole))]
+        public async Task<ActionResult<RoleViewModel>> CreateRole([FromBody] CreateRoleViewModel viewModel)
         {
 
             try
@@ -74,15 +76,33 @@ namespace  Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet]
-        public async Task<ActionResult<List<RoleViewModel>>> GetAll()
+        [HttpGet(Name = nameof(GetAllRoles))]
+        public async Task<ActionResult<PaginationEntity<RoleViewModel>>> GetAllRoles([FromQuery] UrlQueryParameters urlQueryParameters)
         {
             try
             {
-                var roles = await _roleService.GetAllRolesAsync();
+                // get all roles
+                var roles = await _roleService.GetAllRolesAsync(urlQueryParameters.Page, urlQueryParameters.Limit);
+                // mapp response to view model
+                var response = _mapper.Map<PaginationEntity<RoleViewModel>>(roles);
+                // add previous route link if exist
+                if (response.CurrentPage > 1)
+                {
+                    // generate previous route
+                    var prevRoute = Url.RouteUrl(nameof(GetAllRoles), new { limit = urlQueryParameters.Limit, page = urlQueryParameters.Page - 1 });
+                    // add the route to dictionnary links
+                    response.Prev= prevRoute;
 
-                var response = _mapper.Map<List<RoleViewModel>>(roles);
-
+                }
+                //add next route link if exist
+                if (response.CurrentPage < response.TotalPages)
+                {
+                    // generate next route
+                    var nextRoute = Url.RouteUrl(nameof(GetAllRoles), new { limit = urlQueryParameters.Limit, page = urlQueryParameters.Page + 1 });
+                    // add the route to dictionnary links
+                    response.Next = nextRoute;
+                }
+                // return success response
                 return HandleSuccessResponse(response);
             }
             catch (Exception ex)
@@ -96,8 +116,8 @@ namespace  Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet("{id}")]
-        public async Task<ActionResult<RoleViewModel>> GetById(int id)
+        [HttpGet(template:"{id}", Name = nameof(GetRoleById))]
+        public async Task<ActionResult<RoleViewModel>> GetRoleById(int id)
         {
             try
             {
@@ -120,8 +140,8 @@ namespace  Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete(template:"{id}", Name = nameof(DeleteRole))]
+        public async Task<IActionResult> DeleteRole(int id)
         {
             try
             {
@@ -141,8 +161,8 @@ namespace  Miccore.Net.webapi_template.User.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPut("{id}")]
-        public async Task<ActionResult<RoleViewModel>> Update(int id, [FromBody] RoleViewModel viewModel)
+        [HttpPut(template:"{id}", Name = nameof(UpdateRole))]
+        public async Task<ActionResult<RoleViewModel>> UpdateRole(int id, [FromBody] RoleViewModel viewModel)
         {
             try
             {

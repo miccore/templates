@@ -45,5 +45,8 @@ namespace  Miccore.Net.webapi_template.User.Api.Operations
         {
             return StatusCode((int)HttpStatusCode.NoContent);
         }
+
+        // record for Url query parameter
+        public record UrlQueryParameters(int Limit = 50, int Page = 1);
     }
 }

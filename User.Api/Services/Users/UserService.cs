@@ -14,6 +14,7 @@ using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using  Miccore.Net.webapi_template.User.Api.Services.Role;
 using System.Security.Cryptography;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
 namespace  Miccore.Net.webapi_template.User.Api.Services.User {
 
@@ -61,10 +62,10 @@ namespace  Miccore.Net.webapi_template.User.Api.Services.User {
         public async Task<int> DeleteUserAsync(int id) => await _userRepository.DeleteAsync(id);
 
 
-        public async Task<IEnumerable<UserDomainModel>> GetAllUsersAsync()
+        public async Task<PaginationEntity<UserDomainModel>> GetAllUsersAsync(int page, int limit)
         {
-            var users = await _userRepository.GetAllAsync();
-            return _mapper.Map<List<UserDomainModel>>(users);
+            var users = await _userRepository.GetAllAsync(page, limit);
+            return _mapper.Map<PaginationEntity<UserDomainModel>>(users);
         }
 
         public async Task<UserDomainModel> GetUserAsync(int id)

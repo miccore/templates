@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using  Miccore.Net.webapi_template.User.Api.Repositories.Role.DtoModels;
 using  Miccore.Net.webapi_template.User.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.User.Api.Entities;
 
 namespace  Miccore.Net.webapi_template.User.Api.Repositories.Role {
 
@@ -36,11 +38,12 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.Role {
             return id;
         }
 
-        public async Task<IEnumerable<RoleDtoModel>> GetAllAsync()
+        public async Task<PaginationEntity<RoleDtoModel>> GetAllAsync(int page, int limit)
         {
             var roles = await _context.Roles
-                                    .Where(x => x.DeletedAt != null)    
-                                    .ToListAsync();
+                                    .Where(x => x.DeletedAt != null) 
+                                    .OrderBy(x => x.CreatedAt)   
+                                    .PaginateAsync(page, limit);
             
             return roles;
         }

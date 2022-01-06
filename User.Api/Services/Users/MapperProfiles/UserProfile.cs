@@ -1,4 +1,5 @@
 using AutoMapper;
+using Miccore.Net.webapi_template.User.Api.Entities;
 using  Miccore.Net.webapi_template.User.Api.Repositories.User.DtoModels;
 using  Miccore.Net.webapi_template.User.Api.Services.User.DomainModels;
 
@@ -9,6 +10,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Services.User.MapperProfiles
         public UserProfile()
         {
             CreateMap<UserDomainModel, UserDtoModel>().ReverseMap();
+            CreateMap<PaginationEntity<UserDomainModel>, PaginationEntity<UserDtoModel>>().ReverseMap();
         }
     }
 }
