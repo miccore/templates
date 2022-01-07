@@ -19,6 +19,10 @@ using System.Reflection;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using Miccore.Net.webapi_template.Sample.Api.Services;
+using System.Text;
+using JWTAuthentication.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Miccore.Net.webapi_template.Sample.Api
 {
@@ -97,7 +101,15 @@ namespace Miccore.Net.webapi_template.Sample.Api
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
-            services.AddControllers();
+            services.AddControllers()
+                    .AddJsonOptions(ops =>
+                    {
+                        ops.JsonSerializerOptions.IgnoreNullValues = true;
+                        ops.JsonSerializerOptions.WriteIndented = true;
+                        ops.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                        ops.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                        ops.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    });
             services.AddMvc().AddFluentValidation();
         }
 

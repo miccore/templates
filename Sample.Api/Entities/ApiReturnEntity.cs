@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Miccore.Net.webapi_template.Sample.Api.Entities
+namespace  Miccore.Net.webapi_template.Sample.Api.Entities
 {
     public class ApiReturnEntity
     {

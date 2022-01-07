@@ -13,6 +13,8 @@ using Miccore.Net.webapi_template.Sample.Api.Operations.Sample.ViewModels;
 using Miccore.Net.webapi_template.Sample.Api.Operations.Sample.Validator;
 using AutoMapper;
 using System.Diagnostics.Contracts;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
 namespace Miccore.Net.webapi_template.Sample.Api.Operations
 {
@@ -36,8 +38,8 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPost]
-        public async Task<ActionResult<SampleViewModel>> Create([FromBody] CreateSampleViewModel viewModel)
+        [HttpPost(Name = nameof(CreateSample))]
+        public async Task<ActionResult<SampleViewModel>> CreateSample([FromBody] CreateSampleViewModel viewModel)
         {
 
            try
@@ -71,15 +73,31 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet]
-        public async Task<ActionResult<List<SampleViewModel>>> GetAll()
+        [HttpGet(Name = nameof(GetAllSamples))]
+        public async Task<ActionResult<PaginationEntity<SampleViewModel>>> GetAllSamples([FromQuery] UrlQueryParameters urlQueryParameters)
         {
            try
             {
-                var samples = await _sampleService.GetAllSamplesAsync();
+                var samples = await _sampleService.GetAllSamplesAsync(urlQueryParameters.Page, urlQueryParameters.Limit);
 
-                var response = _mapper.Map<List<SampleViewModel>>(samples);
+                var response = _mapper.Map<PaginationEntity<SampleViewModel>>(samples);
+                 // add previous route link if exist
+                if (response.CurrentPage > 1)
+                {
+                    // generate previous route
+                    var prevRoute = Url.RouteUrl(nameof(GetAllSamples), new { limit = urlQueryParameters.Limit, page = urlQueryParameters.Page - 1 });
+                    // add the route to dictionnary links
+                    response.Prev= prevRoute;
 
+                }
+                //add next route link if exist
+                if (response.CurrentPage < response.TotalPages)
+                {
+                    // generate next route
+                    var nextRoute = Url.RouteUrl(nameof(GetAllSamples), new { limit = urlQueryParameters.Limit, page = urlQueryParameters.Page + 1 });
+                    // add the route to dictionnary links
+                    response.Next = nextRoute;
+                }
                 return HandleSuccessResponse(response);
             }
             catch (Exception ex)
@@ -93,8 +111,8 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet("{id}")]
-        public async Task<ActionResult<SampleViewModel>> GetById(int id)
+        [HttpGet(template: "{id}", Name = nameof(GetSampleById))]
+        public async Task<ActionResult<SampleViewModel>> GetSampleById(int id)
         {
            try
             {
@@ -115,8 +133,8 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete(template: "{id}", Name = nameof(DeleteSample))]
+        public async Task<IActionResult> DeleteSample(int id)
         {
             // delete existing movie
             try
@@ -136,8 +154,8 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpPut("{id}")]
-        public async Task<ActionResult<SampleViewModel>> Update(int id, [FromBody] SampleViewModel viewModel)
+        [HttpPut(template: "{id}", Name = nameof(UpdateSample))]
+        public async Task<ActionResult<SampleViewModel>> UpdateSample(int id, [FromBody] SampleViewModel viewModel)
         {
             try
             {

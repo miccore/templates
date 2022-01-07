@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Miccore.Net.webapi_template.Sample.Api.Services.Sample.DomainModels;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
 namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample {
 
     public interface ISampleService{
 
 
-        Task<IEnumerable<SampleDomainModel>> GetAllSamplesAsync();
+        Task<PaginationEntity<SampleDomainModel>> GetAllSamplesAsync(int page, int limit);
 
         Task<SampleDomainModel> GetSampleAsync(int id);
 

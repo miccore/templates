@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
 using Miccore.Net.webapi_template.Sample.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
 namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
@@ -36,11 +38,12 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
             return id;
         }
 
-        public async Task<IEnumerable<SampleDtoModel>> GetAllAsync()
+        public async Task<PaginationEntity<SampleDtoModel>> GetAllAsync(int page, int limit)
         {
             var samples = await _context.Samples
                                         .Where(x => x.DeletedAt != null)
-                                        .ToListAsync();
+                                        .OrderBy(x => x.CreatedAt) 
+                                        .PaginateAsync(page, limit);
             
             return samples;
         }
@@ -55,8 +58,8 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
         {
             Contract.Requires(sample != null);
             var dto = await _context.Samples.FirstOrDefaultAsync(x => x.Id == sample.Id && x.DeletedAt != null);
-            dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             dto = sample;
+            dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();
 
             return sample;
