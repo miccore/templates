@@ -1,6 +1,7 @@
 using AutoMapper;
 using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
 using Miccore.Net.webapi_template.Sample.Api.Services.Sample.DomainModels;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
 namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample.MapperProfiles
 {

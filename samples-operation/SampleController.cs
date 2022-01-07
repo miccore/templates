@@ -14,7 +14,7 @@ using Miccore.Net.webapi_template.Sample.Api.Operations.Sample.Validator;
 using AutoMapper;
 using System.Diagnostics.Contracts;
 using Microsoft.Extensions.DependencyInjection;
-using Miccore.Net.webapi_template.User.Api.Entities;
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
 namespace Miccore.Net.webapi_template.Sample.Api.Operations
 {
@@ -73,7 +73,7 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]    
         [ProducesResponseType(StatusCodes.Status400BadRequest)]   
-        [HttpGet(nameof = nameof(GetAllSamples))]
+        [HttpGet(Name = nameof(GetAllSamples))]
         public async Task<ActionResult<PaginationEntity<SampleViewModel>>> GetAllSamples([FromQuery] UrlQueryParameters urlQueryParameters)
         {
            try

@@ -7,6 +7,7 @@ using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample.DtoModels;
 using Miccore.Net.webapi_template.Sample.Api.Services.Sample;
 using Miccore.Net.webapi_template.Sample.Api.Repositories.Sample;
 
+using Miccore.Net.webapi_template.Sample.Api.Entities;
 
 namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample {
 
@@ -30,7 +31,7 @@ namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample {
 
         public async Task<PaginationEntity<SampleDomainModel>> GetAllSamplesAsync(int page, int limit)
         {
-            var samples = await _sampleRepository.GetAllAsync();
+            var samples = await _sampleRepository.GetAllAsync(page, limit);
             return _mapper.Map<PaginationEntity<SampleDomainModel>>(samples);
         }
 
