@@ -7,7 +7,7 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
     public interface ISampleRepository{
 
-        Task<IEnumerable<SampleDtoModel>> GetAllAsync();
+        Task<PaginationEntity<RoleDtoModel>> GetAllAsync(int page, int limit);
 
         Task<SampleDtoModel> GetSingleAsync(int id);
 

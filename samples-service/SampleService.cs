@@ -28,10 +28,10 @@ namespace Miccore.Net.webapi_template.Sample.Api.Services.Sample {
 
         public async Task<int> DeleteSampleAsync(int id) => await _sampleRepository.DeleteAsync(id);
 
-        public async Task<IEnumerable<SampleDomainModel>> GetAllSamplesAsync()
+        public async Task<PaginationEntity<SampleDomainModel>> GetAllSamplesAsync(int page, int limit)
         {
             var samples = await _sampleRepository.GetAllAsync();
-            return _mapper.Map<List<SampleDomainModel>>(samples);
+            return _mapper.Map<PaginationEntity<SampleDomainModel>>(samples);
         }
 
         public async Task<SampleDomainModel> GetSampleAsync(int id)

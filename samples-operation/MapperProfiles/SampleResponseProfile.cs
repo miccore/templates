@@ -9,6 +9,7 @@ namespace Miccore.Net.webapi_template.Sample.Api.Operations.Sample.MapperProfile
         public SampleResponseProfile()
         {
             CreateMap<SampleViewModel, SampleDomainModel>().ReverseMap();
+            CreateMap<PaginationEntity<SampleViewModel>, PaginationEntity<SampleDomainModel>>().ReverseMap();
         }
     }
 }
