@@ -44,8 +44,8 @@ namespace  Miccore.Net.webapi_template.User.Api
             var host = Configuration["PMA_HOST"] ?? "localhost";
             var db = Configuration["PMA_DB"] ?? "database";
             var port = Configuration["PMA_PORT"] ?? "3306";
-            var user  = Configuration["PMA_USER"] ?? "mysql_user";
-            var password = Configuration["PMA_PASSWORD"] ?? "mysql_password_user";
+            var user  = Configuration["PMA_USER"] ?? "sqlserver_user";
+            var password = Configuration["PMA_PASSWORD"] ?? "sqlserver_password_user";
             bool trusted_Connection = true;
 
             CorsConfiguration(services);
