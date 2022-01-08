@@ -46,12 +46,12 @@ namespace  Miccore.Net.webapi_template.User.Api
             var port = Configuration["PMA_PORT"] ?? "3306";
             var user  = Configuration["PMA_USER"] ?? "mysql_user";
             var password = Configuration["PMA_PASSWORD"] ?? "mysql_password_user";
+            bool trusted_Connection = true;
 
             CorsConfiguration(services);
             services.AddDbContextPool<ApplicationDbContext>(
-                    options => options.UseMySql($"server={host};port={port};database={db};user={user};password={password}" 
+                    options => options.UseSqlServer($"Server={host};Database={db};User ID={user};Password={password},Trusted_Connection={trusted_Connection}" 
              ));
-
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             //services and repository
