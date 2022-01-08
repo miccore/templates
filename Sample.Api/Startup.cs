@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Miccore.Net.webapi_template.Sample.Api.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,10 +40,11 @@ namespace Miccore.Net.webapi_template.Sample.Api
             var port = Configuration["PMA_PORT"] ?? "3306";
             var user  = Configuration["PMA_USER"] ?? "mysql_user";
             var password = Configuration["PMA_PASSWORD"] ?? "mysql_password_user";
+            bool trusted_Connection = true;
 
             CorsConfiguration(services);
             services.AddDbContextPool<ApplicationDbContext>(
-                    options => options.UseMySql($"server={host};port={port};database={db};user={user};password={password}" 
+                    options => options.UseSqlServer($"Server={host};Database={db};User ID={user};Password={password},Trusted_Connection={trusted_Connection}" 
              ));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
