@@ -49,7 +49,8 @@ namespace  Miccore.Net.webapi_template.User.Api
 
             CorsConfiguration(services);
             services.AddDbContextPool<ApplicationDbContext>(
-                    options => options.UseMySql($"server={host};port={port};database={db};user={user};password={password}" 
+                    options => options.UseMySql($"server={host};port={port};database={db};user={user};password={password}",
+                    new MySqlServerVersion(new Version())
              ));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
