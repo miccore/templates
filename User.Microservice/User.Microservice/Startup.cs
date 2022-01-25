@@ -56,6 +56,7 @@ namespace User.Microservice
 
             //services and repository
             addServive(services);
+            
 
             UserServiceCollectionExtensions.AddAutoMapper(services, GetAssemblyNamesToScanForMapperProfiles());
 
