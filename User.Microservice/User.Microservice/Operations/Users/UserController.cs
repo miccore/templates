@@ -20,6 +20,8 @@ using User.Microservice.Operations.ApiResponses;
 using System.Net.Http;
 using User.Microservice.Entities;
 using Newtonsoft.Json;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace User.Microservice.Operations
 {
