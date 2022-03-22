@@ -67,9 +67,7 @@ services:
     container_name: gateway
     depends_on:
       - db
-    build:
-      context: ./Gateway.WebApi
-      dockerfile: Dockerfile.Gateway
+    image: gateway.webapi.image
     expose: 
       - '80'
     ports: 
