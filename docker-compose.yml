@@ -85,7 +85,7 @@ services:
     container_name: user
     depends_on:
       - db
-    image: user.microservice.image:latest
+    image: user.api.image:latest
     expose: 
       - '80'
     ports: 
