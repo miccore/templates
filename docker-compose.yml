@@ -51,9 +51,8 @@ services:
     container_name: migration
     links: 
       - db
-    build:
-      context: .
-      dockerfile: Dockerfile.Migration
+    
+    image: migration.image:latest
     environment: 
       PMA_HOST: db
       PMA_DB: db-name
