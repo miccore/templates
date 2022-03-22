@@ -67,9 +67,7 @@ services:
     container_name: gateway
     depends_on:
       - db
-    build:
-      context: ./Gateway.WebApi
-      dockerfile: Dockerfile.Gateway
+    image: gateway.webapi.image
     expose: 
       - '80'
     ports: 
@@ -88,9 +86,7 @@ services:
     container_name: user
     depends_on:
       - db
-    build: 
-      context: ./User.Microservice
-      dockerfile: Dockerfile.User
+    image: user.microservice.image:latest
     expose: 
       - '80'
     ports: 
