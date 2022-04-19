@@ -41,7 +41,7 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
         public async Task<PaginationEntity<SampleDtoModel>> GetAllAsync(int page, int limit)
         {
             var samples = await _context.Samples
-                                        .Where(x => x.DeletedAt != null)
+                                        .Where(x => x.DeletedAt == null)
                                         .OrderBy(x => x.CreatedAt) 
                                         .PaginateAsync(page, limit);
             
