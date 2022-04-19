@@ -41,7 +41,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.Role {
         public async Task<PaginationEntity<RoleDtoModel>> GetAllAsync(int page, int limit)
         {
             var roles = await _context.Roles
-                                    .Where(x => x.DeletedAt != null) 
+                                    .Where(x => x.DeletedAt == null) 
                                     .OrderBy(x => x.CreatedAt)   
                                     .PaginateAsync(page, limit);
             
