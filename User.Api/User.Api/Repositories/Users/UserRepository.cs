@@ -55,7 +55,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
         {
             var users = await _context.Users
                                     .Include(x => x.Role)
-                                    .Where(x => x.DeletedAt != null)
+                                    .Where(x => x.DeletedAt == null)
                                     .OrderBy(x => x.CreatedAt)
                                     .PaginateAsync(page, limit);
             
