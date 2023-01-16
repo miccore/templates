@@ -50,14 +50,14 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.Role {
 
         public async Task<RoleDtoModel> GetSingleAsync(int id)
         {
-            var role =  await _context.Roles.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt != null);
+            var role =  await _context.Roles.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             return role;
         }
 
         public async Task<RoleDtoModel> UpdateAsync(RoleDtoModel role)
         {
             Contract.Requires(role != null);
-            var dto = await _context.Roles.FirstOrDefaultAsync(x => x.Id == role.Id && x.DeletedAt != null);
+            var dto = await _context.Roles.FirstOrDefaultAsync(x => x.Id == role.Id && x.DeletedAt == null);
             dto = role;
             dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();
