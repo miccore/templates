@@ -66,7 +66,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
         {
             var user =  await _context.Users
                                     .Include(x => x.Role)
-                                    .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt != null);
+                                    .FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             return user;
         }
 
@@ -74,7 +74,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
         {
             var user =  await _context.Users
                                     .Include(x => x.Role)
-                                    .FirstOrDefaultAsync(x => x.Phone == phone && x.DeletedAt != null);
+                                    .FirstOrDefaultAsync(x => x.Phone == phone && x.DeletedAt == null);
             return user;
         }
 
@@ -84,21 +84,21 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
         {
             var user =  await _context.Users
                                     .Include(x => x.Role)
-                                    .FirstOrDefaultAsync(x => x.Email == Email && x.DeletedAt != null);
+                                    .FirstOrDefaultAsync(x => x.Email == Email && x.DeletedAt == null);
             return user;
         }
 
          public async Task<UserDtoModel> GetSingleByRefreshTokenAsync(string refresh)
         {
             var User =  await _context.Users
-                                        .FirstOrDefaultAsync(x => x.RefreshToken == refresh && x.DeletedAt != null);
+                                        .FirstOrDefaultAsync(x => x.RefreshToken == refresh && x.DeletedAt == null);
             return User;
         }
 
         public async Task<UserDtoModel> UpdateAsync(UserDtoModel user)
         {
             Contract.Requires(user != null);
-            var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id && x.DeletedAt != null);
+            var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id && x.DeletedAt == null);
             if (dto == null)
             {
                 return new UserDtoModel();
@@ -116,7 +116,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
         public async Task<UserDtoModel> UpdateRefreshTokenAsync(UserDtoModel user)
         {
             Contract.Requires(user != null);
-            var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id && x.DeletedAt != null);
+            var dto = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id && x.DeletedAt == null);
             if (dto == null)
             {
                 return new UserDtoModel();
