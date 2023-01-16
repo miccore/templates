@@ -50,14 +50,14 @@ namespace Miccore.Net.webapi_template.Sample.Api.Repositories.Sample {
 
         public async Task<SampleDtoModel> GetSingleAsync(int id)
         {
-            var sample =  await _context.Samples.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt != null);
+            var sample =  await _context.Samples.FirstOrDefaultAsync(x => x.Id == id && x.DeletedAt == null);
             return sample;
         }
 
         public async Task<SampleDtoModel> UpdateAsync(SampleDtoModel sample)
         {
             Contract.Requires(sample != null);
-            var dto = await _context.Samples.FirstOrDefaultAsync(x => x.Id == sample.Id && x.DeletedAt != null);
+            var dto = await _context.Samples.FirstOrDefaultAsync(x => x.Id == sample.Id && x.DeletedAt == null);
             dto = sample;
             dto.UpdatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 01, 01, 0, 0, 0)).TotalSeconds;
             await _context.SaveChanges();
