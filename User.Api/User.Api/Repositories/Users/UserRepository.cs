@@ -23,7 +23,7 @@ namespace  Miccore.Net.webapi_template.User.Api.Repositories.User {
 
        public async Task<UserDtoModel> AuthenticateUser(UserDtoModel user)
         {
-            var userGet = await _context.Users.SingleOrDefaultAsync(x => x.Phone == user.Phone  && x.DeletedAt != null);
+            var userGet = await _context.Users.SingleOrDefaultAsync(x => x.Phone == user.Phone  && x.DeletedAt == null);
             if (userGet == null || !BC.Verify(user.Password, userGet.Password))
             {
                 return null;
